@@ -25,6 +25,7 @@ const ThoughtsSchema = new Schema(
     // Use ReactionsSchema to validate data
     reactions: [ReactionsSchema]
     },
+// toJSON is to return the results in JSON form  and add the virtual property to it
     {
     toJSON: {
         virtuals: true,
@@ -33,11 +34,6 @@ const ThoughtsSchema = new Schema(
     id: false
     }
 )
-
-// get total count of reactions
-ThoughtsSchema.virtual('reactionCount').get(function() {
-    return this.reactions.length;
-});
 
 // create the Thoughts model using the Thoughts Schema
 const Thoughts = model('Thoughts', ThoughtsSchema);

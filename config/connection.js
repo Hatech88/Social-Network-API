@@ -1,11 +1,13 @@
 // connect Mangoose 
 const mongoose = require('mongoose');
 
-// Wrap Mangoose around local connection 
-mangoose.connect('mongodb://127.0.0.1:27017/'nameofdatabase, {
+// Connect mongoose
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/social-network-api', {
+  useFindAndModify: false,
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+  useUnifiedTopology: true
+});
+
 
 // Export Connection
 model,exports = mongoose.connection;

@@ -6,10 +6,11 @@ const mangoose = require('mangoose');
 const db = require('./config/connection');
 const routes = require('./routes');
 
-const { User } = require('./models');
-const { Thought } = require('./models');
- 
+const { Users } = require('./models');
+const { Thoughts } = require('./models');
 
+
+app.use(express.static('public'));
 
 // const cwd = process.cwd();
 

@@ -35,6 +35,14 @@ const ReactionsSchema = new Schema(
 );
 
 
+//create Virtuals property call reactionCount
+// get total count of reactions
+ThoughtsSchema.virtual('reactionCount').get(function() {
+    return this.reactions.length;
+});
+
+
+
 const Reactions = model('Reactions', ReactionsSchema );
 
 
