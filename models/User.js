@@ -1,6 +1,7 @@
 // model represent a collection in Mongodb and represent a table in SQL
 
 const mongoose = require('mongoose');
+const sequalize = require('../config/connection')
 
 // User collection 
 
@@ -29,13 +30,14 @@ const userSchema = new mongoose.Schema({
 
     friends: {
 
-    }
+    }, 
+  
 
 });
 
 
 // create a new instance of the model 
-const Users = model('Users', usersSchema)
+const Users = model('Users', userSchema)
 
 
 // export Users module 

@@ -1,4 +1,8 @@
-const Users = require("../../models/User");
+const router = require('express-router');
+const {getAllUsers} = require('../../controllers/user-controllers');
+
+//router use => url router, request Method => functions to use 
+router.use('/').get(getAllUsers).post().put().delete()
 
 
 
@@ -10,12 +14,4 @@ const Users = require("../../models/User");
 
 
 
-Users.find({}, (err, result) =>{
-    if (err) {
-        results.status(500).send({message: 'Internal Server Error'});
-
-    }
-    else {
-        results.status(200).json(result)
-    };
-});
+U
