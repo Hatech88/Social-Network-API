@@ -1,11 +1,11 @@
 // model represent a collection in Mongodb and represent a table in SQL
 
-const mongoose = require('mongoose');
-const sequalize = require('../config/connection')
+const { Schema, model} = require('mongoose');
+// const sequalize = require('../config/connection')
 
 // User collection 
 
-const userSchema = new mongoose.Schema({
+const UsersSchema = new Schema({
     // add individual properties and thier types
     // setting required to true will disallow null values 
     username: {
@@ -19,8 +19,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        // use the reular expression to validate correct email from regex Homework
-         match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/]
+        // // use the reular expression to validate correct email from regex Homework
+        //  match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/]
 
     },
 
@@ -48,7 +48,7 @@ UsersSchema.virtual('friendCount').get(function() {
 })
 
 // create a new instance of the model 
-const Users = model('Users', userSchema)
+const Users = model('Users', UsersSchema);
 
 
 // export Users module 

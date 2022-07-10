@@ -1,7 +1,7 @@
 
 // model represent a collection in Mongodb and represent a table in SQL
-
-const mongoose = require('mongoose');
+const Thoughts = require('./Thoughts');
+const { Schema, model, Types } = require('mongoose');
 const moment = require('moment');
 
 // ReactionsSchema
@@ -37,9 +37,9 @@ const ReactionsSchema = new Schema(
 
 //create Virtuals property call reactionCount
 // get total count of reactions
-ThoughtsSchema.virtual('reactionCount').get(function() {
-    return this.reactions.length;
-});
+// Thoughts.virtual('reactionCount').get(function() {
+//     return this.reactions.length;
+// });
 
 
 

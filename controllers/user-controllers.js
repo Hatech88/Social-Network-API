@@ -138,7 +138,7 @@ deleteFrind(req, res){
 
     .then((usersData) => {
         if(!usersData) {
-            res.status.(404).json({message: "No user found with this ID!"})
+            res.status(404).json({message: "No user found with this ID!"})
         }
         res.json(usersData);
     })

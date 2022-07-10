@@ -1,7 +1,7 @@
 
 // express and mangoose 
 const express = require('express');
-const mangoose = require('mangoose');
+const mongoose = require('mongoose');
 
 const db = require('./config/connection');
 const routes = require('./routes');
@@ -9,13 +9,13 @@ const routes = require('./routes');
 const { Users } = require('./models');
 const { Thoughts } = require('./models');
 
-
+const app = express();
 app.use(express.static('public'));
 
-// const cwd = process.cwd();
+const cwd = process.cwd();
 
 const PORT = process.env.port || 3001;
-const app = express();
+
 
 
 app.use(express.urlencoded({ extended: true }));

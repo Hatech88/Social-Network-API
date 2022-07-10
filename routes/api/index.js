@@ -1,24 +1,15 @@
-// Require express router
+// Set requirements (Express Router)
 const router = require('express').Router();
 
-// Import all of the API routes 
-const apiRoutes = require('./api');
+// Set routes (user and thought routes)
+const usersRoutes = require('./user-routes');
+const thoughtsRoutes = require('./thought-routes');
 
+// Add `/users` to created routes 
+router.use('/users', usersRoutes);
 
-// add prefix of `/api` to all of the api routes
-router.use('/api', apiRoutes);
+// Add `/thoughts` to created routes 
+router.use('/thoughts', thoughtsRoutes);
 
-
-//   error message
-router.use((req, res) => res.send('Wrong route!'));
-
-
-// or we can write it like this
-router.use((req, res) => {
-    res.status(404).send('Wrong route');
-  });
-
-
-// Module exports router
+// Export Module Router
 module.exports = router;
-

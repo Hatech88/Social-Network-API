@@ -1,4 +1,4 @@
-// Require Mongoos and Moment
+// Require Mongoose and Moment
 const { Schema, model, Types } = require('mongoose');
 const moment = require('moment');
 
@@ -64,9 +64,9 @@ const ThoughtsSchema = new Schema(
 )
 
 // get total count of reactions
-ThoughtsSchema.virtual('reactionCount').get(function() {
-    return this.reactions.length;
-});
+// // ThoughtsSchema.virtual('reactionCount').get(function() {
+// //     return this.reactions.length;
+// });
 
 // create the Thoughts model using the Thoughts Schema
 const Thoughts = model('Thoughts', ThoughtsSchema);
