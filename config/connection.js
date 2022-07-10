@@ -52,7 +52,7 @@ module.exports = connection;
 
 // To make sure your connection was successful
 
-const db = mongoose.connection;
+const db = connection;
 db.on("error", console.error.bind(console, "connection error: "));
 db.once("open", function () {
   console.log("Connected successfully");
