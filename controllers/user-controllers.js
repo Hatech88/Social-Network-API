@@ -39,6 +39,8 @@ const usersController = {
     },
 
 
+
+
     // Get All Users 
     getAllUsers(req, res){
         Users.find({})
@@ -57,6 +59,9 @@ const usersController = {
             res.status(500).json(err);
         })
     },
+
+
+
 
 
 // get a single user by ID
@@ -80,7 +85,69 @@ getUsersById(req, res) {
         console.log(err);
         res.status(400).json(err)
     })
+},
+
+
+
+
+
+// update user by id
+    updateUsers(req, res){
+        Users.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
+        .then(usersData => res.josn(usersData))
+        .catch(err => res.status(500).joson(err));
+    },
+
+
+
+
+    // delete user 
+    deleteUsers(req, res){
+        Users.findOneAndDelete({_id: req.params.id})
+        .then(usersData => {
+            if(!usersData){
+                res.status(404).json({message: "No user found with this ID"});
+                return;
+            }
+            res.json(usersData);
+        })
+        .catch(err => res.status(400).json(err));
+    },
+
+
+
+    // add a friend 
+    addFriend(req, res){
+        Users.findOneAndUpdate({_id: req.params.id},{$push:  {friends: params.friendId}},{runValidators: true}, {new: true})
+        .then(usersData => {
+            if(!usersData){
+                res.status(404).json({message: "no User found with this ID!"});
+                return;
+            }
+            res.josn(userData);
+        })
+        .catch(err => res.json(err));
+    },
+
+
+
+
+    // delete a current friend 
+deleteFrind(req, res){
+    Users.findOneAndUpdate({_id: req.params.id}, {$push: {friends: req.params.friendId}}, {new: true})
+
+    .then((usersData) => {
+        if(!usersData) {
+            res.status.(404).json({message: "No user found with this ID!"})
+        }
+        res.json(usersData);
+    })
+    .catch((err) => {
+        res.status(400).json(err)
+    })
 }
+
+
 
 }
 
