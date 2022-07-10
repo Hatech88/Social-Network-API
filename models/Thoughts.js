@@ -1,7 +1,36 @@
-// model represent a collection in Mongodb and represent a table in SQL
+// Require Mongoos and Moment
+const { Schema, model, Types } = require('mongoose');
+const moment = require('moment');
 
-const mongoose = require('mongoose');
-const moment  = require('moment');
+// ReactionsSchema
+const ReactionsSchema = new Schema(
+    {
+    // Set custom ID 
+    reactionId: {
+        type: Schema.Types.ObjectId,
+        default: ()=> new Types.ObjectId()
+    },
+    reactionBody: {
+        type: String,
+        required: true,
+        maxlength: 280
+    },
+    username: {
+        type: String,
+        required: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        get: (createdAtVal) => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
+    }
+    },
+    {
+    toJSON: {
+        getters: true
+    } 
+    }
+);
 
 // ThoughtsSchema
 const ThoughtsSchema = new Schema(
@@ -25,7 +54,6 @@ const ThoughtsSchema = new Schema(
     // Use ReactionsSchema to validate data
     reactions: [ReactionsSchema]
     },
-// toJSON is to return the results in JSON form  and add the virtual property to it
     {
     toJSON: {
         virtuals: true,
@@ -34,6 +62,11 @@ const ThoughtsSchema = new Schema(
     id: false
     }
 )
+
+// get total count of reactions
+ThoughtsSchema.virtual('reactionCount').get(function() {
+    return this.reactions.length;
+});
 
 // create the Thoughts model using the Thoughts Schema
 const Thoughts = model('Thoughts', ThoughtsSchema);

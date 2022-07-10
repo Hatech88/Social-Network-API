@@ -24,17 +24,28 @@ const userSchema = new mongoose.Schema({
 
     },
 
-    thoughts: {
-
+    thoughts: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Thoughts'
+    }],
+    friends: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Users'
+    }]
     },
-
-    friends: {
-
-    }, 
-  
+    {
+    toJSON: {
+        virtuals: true,
+        getters: true,
+    },
+    id: false
 
 });
 
+// get total count of friends
+UsersSchema.virtual('friendCount').get(function() {
+    return this.friends.length;
+})
 
 // create a new instance of the model 
 const Users = model('Users', userSchema)
